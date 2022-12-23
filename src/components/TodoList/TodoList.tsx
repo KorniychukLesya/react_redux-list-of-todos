@@ -1,7 +1,13 @@
 /* eslint-disable max-len */
 import React from 'react';
+import { Todo as Todotype } from '../../types/Todo';
+import { Todo } from '../Todo/Todo';
 
-export const TodoList: React.FC = () => {
+interface Props {
+  todos: Todotype[];
+}
+
+export const TodoList: React.FC<Props> = ({ todos }) => {
   return (
     <>
       <p className="notification is-warning">
@@ -25,6 +31,10 @@ export const TodoList: React.FC = () => {
         </thead>
 
         <tbody>
+          {todos.map(todo => (
+            <Todo todo={todo} />
+          ))}
+
           <tr data-cy="todo">
             <td className="is-vcentered">1</td>
             <td className="is-vcentered"> </td>
@@ -78,7 +88,11 @@ export const TodoList: React.FC = () => {
 
           <tr data-cy="todo">
             <td className="is-vcentered">4</td>
-            <td className="is-vcentered"><span className="icon" data-cy="iconCompleted"><i className="fas fa-check" /></span></td>
+            <td className="is-vcentered">
+              <span className="icon" data-cy="iconCompleted">
+                <i className="fas fa-check" />
+              </span>
+            </td>
             <td className="is-vcentered is-expanded">
               <p className="has-text-success">et porro tempora</p>
             </td>
